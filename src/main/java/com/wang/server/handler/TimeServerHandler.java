@@ -17,11 +17,17 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                 //read message from msg , then write this msg into req
-                ByteBuf  buf = (ByteBuf) msg;
-                byte[] req = new byte[buf.readableBytes()];
-                buf.readBytes(req);
 
-                String body = new String(req,"UTF-8").substring(0,req.length-System.getProperty("line.separator").length());
+                // in default, we need get message from msg ,and then ,read bytes from ByteBuf ,write to byte array "req"
+                //ByteBuf  buf = (ByteBuf) msg;
+                //byte[] req = new byte[buf.readableBytes()];
+                //buf.readBytes(req);
+                //String body = new String(req,"UTF-8").substring(0,req.length-System.getProperty("line.separator").length());
+
+                //in Tcp transport , packet process ,we use LineBasedFrameDecoder and StringDecoder
+                //so ,get String from msg directly
+                String body = (String) msg;
+
                 System.out.println("Server Received Order:"+body+", the count is:"+(++counter));
                 String currentTime = "Query Time Order".equalsIgnoreCase(body)?new Date(System.currentTimeMillis()).toString():"Bad Order";
                 currentTime = currentTime+System.getProperty("line.separator");
