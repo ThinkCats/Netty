@@ -29,11 +29,14 @@ public class TimeClientHandler extends ChannelHandlerAdapter {
 
         @Override
         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-                //read message from ByteBuf
-                ByteBuf buf = (ByteBuf) msg;
-                byte[] req = new byte[buf.readableBytes()];
-                buf.readBytes(req);
-                String body = new String(req,"UTF-8") ;
+                //in default, read message from ByteBuf
+                //ByteBuf buf = (ByteBuf) msg;
+                //byte[] req = new byte[buf.readableBytes()];
+                //buf.readBytes(req);
+                //String body = new String(req,"UTF-8") ;
+
+                // when using LineBasedFrameDecoder and  StringDecoder
+                String body = (String) msg;
                 System.out.println("Now is :"+body+",the count is :"+ (++counter));
         }
 
