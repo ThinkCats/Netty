@@ -19,6 +19,7 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
                 //read message from msg , then write this msg into req
 
                 // in default, we need get message from msg ,and then ,read bytes from ByteBuf ,write to byte array "req"
+                //but this will cause packet error in TCP
                 //ByteBuf  buf = (ByteBuf) msg;
                 //byte[] req = new byte[buf.readableBytes()];
                 //buf.readBytes(req);
