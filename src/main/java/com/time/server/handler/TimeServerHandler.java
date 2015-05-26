@@ -1,4 +1,4 @@
-package com.wang.server.handler;
+package com.time.server.handler;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;

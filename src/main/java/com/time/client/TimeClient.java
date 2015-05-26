@@ -1,6 +1,6 @@
-package com.wang.client;
+package com.time.client;
 
-import com.wang.client.handler.ClientChannelHandler;
+import com.time.client.handler.ClientChannelHandler;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelOption;

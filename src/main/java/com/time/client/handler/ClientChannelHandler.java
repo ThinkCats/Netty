@@ -1,4 +1,4 @@
-package com.wang.client.handler;
+package com.time.client.handler;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
