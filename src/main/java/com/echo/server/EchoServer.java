@@ -7,6 +7,8 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
 
 /*
  * Created by wang on 2015/5/26.
@@ -20,7 +22,8 @@ public class EchoServer {
                 b.group(bossGroup,workerGroup)
                         .channel(NioServerSocketChannel.class)
                         .option(ChannelOption.SO_BACKLOG,100)
-                        .handler(new ServerChildHandler());
+                        .handler(new LoggingHandler(LogLevel.INFO))
+                        .childHandler(new ServerChildHandler());
 
                 try {
                         ChannelFuture f = b.bind(port).sync();
